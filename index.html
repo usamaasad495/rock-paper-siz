@@ -7,6 +7,66 @@
     <title>Rock-Paper-Siz</title>
 </head>
 <body>
-    
+    <script>
+
+        // computer play function. Randonly return rock paper or sizzors. function computerPlay
+        function computerPlay(){
+            const randomNumber = Math.floor(Math.random()*3);
+            if (randomNumber === 0){
+                return 'rock';
+            } else if (randomNumber === 1){
+                return 'paper';
+            } else {
+                return 'scizzors';
+            }
+        }
+
+        // function about the game itself. player selection vs computerselection. case insensitive
+        const playerSelection = 'RoCk';
+        const computerSelection = computerPlay();
+        console.log(playerSelection);
+        console.log(computerSelection);
+        //const playerSelectionTest = playerSelection.toLowerCase();
+        
+        console.log(playerSelection === 'rock' && computerSelection === 'rock');
+
+        function playRound(playerSelection) {
+           
+            if (playerSelection.toLowerCase() === 'rock' && computerSelection === 'rock'){
+                return 'You have both chosen rock. The game is a tie!';
+            } else if (playerSelection === 'rock' && computerSelection === 'paper'){
+                  return 'The computer has chosen paper. You Lose!';
+              }
+              else if (playerSelection.toLowerCase() === 'rock' && computerSelection === 'scizzors'){
+                  return 'The computer has chosen scizzors. You Win!';
+              }
+              else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'rock'){
+                  return 'Computer chose rock. You Win!';
+              }
+              else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'paper'){
+                  return 'Computer chose paper too. Its a Tie!';
+              }
+              else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'scizzors'){
+                  return 'Computer chose scizzors. You lose!';
+              }
+              else if (playerSelection.toLowerCase() === 'scizzors' && computerSelection === 'rock'){
+                  return 'Computer chose rock. You Lose!';
+              }
+              else if (playerSelection.toLowerCase() === 'scizzors' && computerSelection === 'paper'){
+                  return 'Computer chose paper too. You Win!';
+              }
+              else {
+                  return 'Computer chose scizzors. Its a Tie!';
+              }
+              
+            
+        }
+        console.log(playRound(playerSelection, computerSelection));
+        // 
+
+    </script>
+
+
+
 </body>
 </html>
