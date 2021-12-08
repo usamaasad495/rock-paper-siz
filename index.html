@@ -20,49 +20,81 @@
                 return 'scizzors';
             }
         }
+        //counter set to keep track of wins, losses and ties
+        let countWin=0;
+        let countLose=0;
+        let countTie=0;
 
-        // function about the game itself. player selection vs computerselection. case insensitive
-        const playerSelection = 'RoCk';
-        const computerSelection = computerPlay();
-        console.log(playerSelection);
-        console.log(computerSelection);
-        //const playerSelectionTest = playerSelection.toLowerCase();
-        
-        console.log(playerSelection === 'rock' && computerSelection === 'rock');
-
+        // function about the game itself. player selection vs computerselection. case insensitive.
+        // compares R/P/S and gives out wins/losses/ties
+    
         function playRound(playerSelection) {
-           
+            
+            const computerSelection = computerPlay();
+            
             if (playerSelection.toLowerCase() === 'rock' && computerSelection === 'rock'){
-                return 'You have both chosen rock. The game is a tie!';
+                console.log('You have both chosen rock. The game is a tie!');
+                 return (countTie += 1) + ' Tie';
             } else if (playerSelection === 'rock' && computerSelection === 'paper'){
-                  return 'The computer has chosen paper. You Lose!';
+                console.log('The computer has chosen paper. You Lose!');
+                 return (countLose += 1) + ' Loss';
               }
               else if (playerSelection.toLowerCase() === 'rock' && computerSelection === 'scizzors'){
-                  return 'The computer has chosen scizzors. You Win!';
+                  console.log('The computer has chosen scizzors. You Win!');
+                  return (countWin += 1) + ' Win';
               }
               else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'rock'){
-                  return 'Computer chose rock. You Win!';
+                  console.log('Computer chose rock. You Win!');
+                  return (countWin += 1) + ' Win';
               }
               else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'paper'){
-                  return 'Computer chose paper too. Its a Tie!';
+                  console.log('Computer chose paper too. Its a Tie!');
+                  return (countTie += 1) + ' Tie';
               }
               else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'scizzors'){
-                  return 'Computer chose scizzors. You lose!';
+                  console.log('Computer chose scizzors. You lose!');
+                  return (countLose += 1) + ' Loss';
               }
               else if (playerSelection.toLowerCase() === 'scizzors' && computerSelection === 'rock'){
-                  return 'Computer chose rock. You Lose!';
+                  console.log('Computer chose rock. You Lose!');
+                  return (countLose += 1) + ' Loss';
               }
               else if (playerSelection.toLowerCase() === 'scizzors' && computerSelection === 'paper'){
-                  return 'Computer chose paper too. You Win!';
+                  console.log('Computer chose paper too. You Win!');
+                  return (countWin += 1) + ' Win';
               }
-              else {
-                  return 'Computer chose scizzors. Its a Tie!';
+              else if (playerSelection.toLowerCase() === 'scizzors' && computerSelection === 'scizzors'){
+                  console.log('Computer chose scizzors. Its a Tie!');
+                  return (countTie += 1) + ' Tie';
               }
               
             
         }
-        console.log(playRound(playerSelection, computerSelection));
-        // 
+
+        // the game itself. set to 5 rounds. keeps a running tally of wins, losses and ties. 
+
+        function game() {
+            for (i=1;i<=5;i++){
+                let gameIteration = i;
+                let playerSelection = window.prompt("Rock, Paper or Scizzors?");
+                console.log('The result of game ' + gameIteration + ' is ' + playRound(playerSelection));
+                console.log('As of game ' + gameIteration + ' wins-'+ countWin + ' losses-' + countLose + ' ties-' + countTie);
+            
+            if (gameIteration === 5 && countWin > countLose){
+                  console.log('you won more games, nice');
+            } else if (gameIteration === 5 && countWin < countLose) {
+                  console.log('you lost more games bruh')
+                }
+             else if (gameIteration === 5 && countWin === countLose){
+                 console.log('you both TIED')
+             }
+                    
+            
+            }
+        }
+        console.log (game());
+    
+        
 
     </script>
 
