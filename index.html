@@ -7,6 +7,12 @@
     <title>Rock-Paper-Siz</title>
 </head>
 <body>
+    <h1>Rock, Paper, Scizzors!</h1>
+    <div id = "container">
+    <button id="choice">Rock</button>
+    <button id="choice2">Paper</button>
+    <button id="choice3">Scizzors</button>
+    </div>
     <script>
 
         // computer play function. Randonly return rock paper or sizzors. function computerPlay
@@ -34,65 +40,121 @@
             
             if (playerSelection.toLowerCase() === 'rock' && computerSelection === 'rock'){
                 console.log('You have both chosen rock. The game is a tie!');
+                result4.textContent = 'computer chose ' + computerSelection;
                  return (countTie += 1) + ' Tie';
             } else if (playerSelection === 'rock' && computerSelection === 'paper'){
                 console.log('The computer has chosen paper. You Lose!');
+                result4.textContent = 'computer chose ' + computerSelection;
                  return (countLose += 1) + ' Loss';
               }
               else if (playerSelection.toLowerCase() === 'rock' && computerSelection === 'scizzors'){
                   console.log('The computer has chosen scizzors. You Win!');
+                  result4.textContent = 'computer chose ' + computerSelection;
                   return (countWin += 1) + ' Win';
               }
               else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'rock'){
                   console.log('Computer chose rock. You Win!');
+                  result4.textContent = 'computer chose ' + computerSelection;
                   return (countWin += 1) + ' Win';
               }
               else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'paper'){
                   console.log('Computer chose paper too. Its a Tie!');
+                  result4.textContent = 'computer chose ' + computerSelection;
                   return (countTie += 1) + ' Tie';
               }
               else if (playerSelection.toLowerCase() === 'paper' && computerSelection === 'scizzors'){
                   console.log('Computer chose scizzors. You lose!');
+                  result4.textContent = 'computer chose ' + computerSelection;
                   return (countLose += 1) + ' Loss';
               }
               else if (playerSelection.toLowerCase() === 'scizzors' && computerSelection === 'rock'){
                   console.log('Computer chose rock. You Lose!');
+                  result4.textContent = 'computer chose ' + computerSelection;
                   return (countLose += 1) + ' Loss';
               }
               else if (playerSelection.toLowerCase() === 'scizzors' && computerSelection === 'paper'){
-                  console.log('Computer chose paper too. You Win!');
+                  console.log('Computer chose paper. You Win!');
+                  result4.textContent = 'computer chose ' + computerSelection;
                   return (countWin += 1) + ' Win';
               }
               else if (playerSelection.toLowerCase() === 'scizzors' && computerSelection === 'scizzors'){
                   console.log('Computer chose scizzors. Its a Tie!');
+                  result4.textContent = 'computer chose ' + computerSelection;
                   return (countTie += 1) + ' Tie';
               }
               
             
         }
+        const result1 = document.createElement('div');
+        result1.classList.add('result');
 
+        const result2 = document.createElement('div');
+        result2.classList.add('result');
+
+        const result3 = document.createElement('div');
+        result3.classList.add('result');
+
+        const result4 = document.createElement('div');
+        result4.classList.add('result');
+
+        const result5 = document.createElement('div');
+        result5.classList.add('result');
+        
+
+        // on each click, play the game with that as the input
+        const choice = document.querySelector('#choice');
+        choice.addEventListener('click', function(e){
+            game('rock'); //display results
+        });             
+        const choice2 = document.querySelector('#choice2');
+        choice2.addEventListener('click', function(e){
+            game('paper');
+        });     
+        const choice3 = document.querySelector('#choice3');
+        choice3.addEventListener('click', function(e){
+            game('scizzors');
+        }); 
+        
+        
+        container.appendChild(result1);
+        container.appendChild(result2);
+        container.appendChild(result3);
+        container.appendChild(result4);
+        container.appendChild(result5);
         // the game itself. set to 5 rounds. keeps a running tally of wins, losses and ties. 
 
-        function game() {
-            for (i=1;i<=5;i++){
-                let gameIteration = i;
-                let playerSelection = window.prompt("Rock, Paper or Scizzors?");
-                console.log('The result of game ' + gameIteration + ' is ' + playRound(playerSelection));
-                console.log('As of game ' + gameIteration + ' wins-'+ countWin + ' losses-' + countLose + ' ties-' + countTie);
-            
-            if (gameIteration === 5 && countWin > countLose){
-                  console.log('you won more games, nice');
-            } else if (gameIteration === 5 && countWin < countLose) {
-                  console.log('you lost more games bruh')
-                }
-             else if (gameIteration === 5 && countWin === countLose){
-                 console.log('you both TIED')
-             }
+        function game(playerSelection) {
+            //for (i=1;i<=5;i++){
+                //let gameIteration = 1;
+                
+               // console.log('The result of game ' + gameIteration + ' is ' + playRound(playerSelection));
+               // console.log('As of game ' + gameIteration + ' wins-'+ countWin + ' losses-' + countLose + ' ties-' + countTie);
+            playRound(playerSelection);
+
+            result1.textContent= countWin + " Win(s)";
+            result2.textContent= countLose + " Losse(s)";
+            result3.textContent = countTie + " Ties(s)";
+
+            if (countWin === 5 && countLose < 5){
+                result5.textContent = "You have won 5 games. Congrats";
+            } else if (countLose === 5 && countWin <5){
+                result5.textContent = "You lost 5 games. Computer Wins overall";
+            }
+
+
+            //if (gameIteration === 5 && countWin > countLose){
+              //    console.log('you won more games, nice');
+            //} else if (gameIteration === 5 && countWin < countLose) {
+               //   console.log('you lost more games bruh')
+                //}
+             //else if (gameIteration === 5 && countWin === countLose){
+               //  console.log('you both TIED')
+             //}
                     
             
             }
-        }
-        console.log (game());
+        //}
+    
     
         
 
